@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://use.fontawesome.com/73608a93c8.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'trainapp/favicon.png' %}"/>
+    <style>
+            td,th{ height:35px; border-bottom:1px solid #d9d9d9;}
+            th{ background-color:#e6f3ff;}
+        </style>
+</head>
+
+<body style="overflow-x: hidden;">
+
+	<nav class="navbar navbar-default navbar-fixed-top opaque-navbar" style="background-color: #1a1a1a;">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="welcome.php" style="cursor: pointer; color: #ffffff; font-size: 30px; margin-left: -100px; font-family:'Sedgwick Ave Display', cursive;">
+            <span><img src="{% static 'trainapp/logo.png' %}" height="40px" width="40px" style="margin-top:-10px;"/>
+            Indian Rail Info</span>
+        </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about_net" style="color: white;"></a></li>
+          <li><a href="#workshops" style="color: white;"></a></li>
+          <li><a href="#resources" style="color: white;"></a></li>
+        </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="height: 50px;"></div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-2" style="background-color: #1a1a1a; position:fixed; height: 92.5vh;">
+                <div class="dashboard" style="overflow:hidden;">
+                <!--    <div class="profile_pic" style="margin-top: 25px; margin-left: 25px;">
+                        <img src="{% static 'trainapp/users.png' %}" height="100px" width="100px" style="border-radius: 50%; border: 2px solid white; background-color:white;">
+                    </div>
+                    <hr style="border-color: white;" width="200px">
+                  -->
+                    <div style="margin-top: 25px; margin-left: 25px;">
+                        <div style="font-size: 15px;">
+                            <a href="http://127.0.0.1:8080/trainapp/train_auto/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-circle-o" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Train Name/Num
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/station_auto/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-gg-circle" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Station Name/Num
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/live_status/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-train" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Spot Your Train
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/live_station/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-microphone" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Live Station
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/train_route/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-clock-o" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Train Schedule
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/train_bw_station/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-exchange" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Trains b/w Stations
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/cancelled_train/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-times" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Cancelled Trains
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/rescheduled_train/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-calendar" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Rescheduled Trains
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/seat_availability/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-list-ol" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Seat Availability
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/pnr_status/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-info-circle" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp PNR Status
+                            </a><br/><br/>
+                            <a href="http://127.0.0.1:8080/trainapp/fare_enquiry/" style="color: white; text-decoration: none;">
+                              <i class="fa fa-credit-card" aria-hidden="true" style="color: white; font-size: 20px;"></i> &nbsp Fare Enquiry
+                            </a><br/><br/>
+                            <span style="font-family:'Sedgwick Ave Display', cursive;">By: <a href="https://www.facebook.com/shreyansh.dwivedi.18/">Shreyansh Dwivedi</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10" style="margin-left: 220px;">
+            	<div style="margin-top: 50px;">
+                    <center>
+                    {% block content %}{% endblock %}
+                    {% if error_msg %}
+                        <div class="alert alert-danger" style="width:500px">
+                          <strong>Error!</strong> {{ error_msg }}.
+                        </div>
+                    {% endif %}
+                        <br/>
+                    {% if success_msg %}
+                        <div class="alert alert-success" style="width:500px">
+                          <strong>Success!</strong> {{ success_msg }}.
+                        </div>
+                    {% endif %}
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

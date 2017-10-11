@@ -1,0 +1,44 @@
+{% extends "trainapp/base.html" %}
+{% block content %}
+<center>
+    <h2>Indian Railways PNR Status</h2><br>
+<form method="post" action="{% url 'social:pnr_status' %}">
+    {% csrf_token %}
+    <input type="text" name="pnr_number" style="width:75%; border-radius:5px;height:40px;" placeholder="   PNR Number"><br><br>
+    <input type="submit" style="height:40px; width:125px; background-color:#cce6ff; border-radius:5px;" value="Get PNR Status">
+</form>
+<br><br>
+    {% if error_msg %}
+    {% elif pnrData %}
+    <div class="container">
+            <div class="table-responsive">
+                <table id="table" class="table-striped table-responsive" style="width:90%;">
+                    <tr>
+                        <th>Train No</th>
+                        <th>Train Name</th>
+                        <th>Boarding Date</th>
+                        <th>From</th>
+                        <th>Reserved Upto</th>
+                        <th>Boarding Point</th>
+                        <th>Class</th>
+                    </tr>
+
+                    {% for value in pnrData %}
+                        <tr>
+                            <td>{{ value.train.number }}</td>
+                            <td>{{ value.train.name }}</td>
+                            <td>{{ value.doj }}</td>
+                            <td>{{ value.from_station.name }}</td>
+                            <td>{{ value.to_station.name }}</td>
+                            <td>{{ value.boarding_point.code}}</td>
+                            <td>{{ value.journey_class.name}}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</center>
+
+{% endblock %}

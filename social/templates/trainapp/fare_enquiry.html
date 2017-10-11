@@ -1,0 +1,53 @@
+{% extends "trainapp/base.html" %}
+{% block content %}
+<center>
+    <h2>Indian Railways Train Route</h2><br>
+<form method="post" action="{% url 'social:fare_enquiry' %}">
+    {% csrf_token %}
+    <input type="text" name="train_number" style="width:50%; border-radius:5px;height:40px;" placeholder="   Train Number"><br><br>
+    <input type="text" name="source_code" style="width:50%; border-radius:5px;height:40px;" placeholder="   Source Station"><br><br>
+    <input type="text" name="dest_code" style="width:50%; border-radius:5px;height:40px;" placeholder="   Destination Station"><br><br>
+    <input type="text" name="age" style="width:50%; border-radius:5px;height:40px;" placeholder="   Age"><br><br>
+    <input type="text" name="date" style="width:50%; border-radius:5px;height:40px;" placeholder="   Date ( dd-mm-yyyy )"><br><br>
+    <input type="text" name="quota_code" style="width:50%; border-radius:5px;height:40px;" placeholder="   Quota Code"><br><br>
+    <input type="submit" style="height:40px; width:125px; background-color:#cce6ff; border-radius:5px;" value="Get Fare">
+</form>
+<br><br>
+    {% if error_msg %}
+    {% elif fare_data %}
+    <div class="container">
+            <div class="table-responsive">
+                <table id="table" class="table-striped table-responsive" style="width:90%;">
+                    <tr>
+                        <th>Train No</th>
+                        <th>Train Name</th>
+                        <th>From Station</th>
+                        <th>Destination</th>
+                        <th>Quota</th>
+                        {% for value_list  in fare_data %}
+                            {% for value in value_list.fare %}
+                                <th>{{ value.code }}</th>
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+
+                    {% for value_list  in fare_data %}
+                    <tr>
+                        <td>{{ value_list.train.number }}</td>
+                        <td>{{ value_list.train.name }}</td>
+                        <td>{{ value_list.from_station.name }}</td>
+                        <td>{{ value_list.to_station.name }}</td>
+                        <td>{{ value_list.quota.code }}</td>
+                        {% for value in value_list.fare %}
+                            <td>{{ value.fare }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</center>
+
+{% endblock %}

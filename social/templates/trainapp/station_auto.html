@@ -1,0 +1,38 @@
+{% extends "trainapp/base.html" %}
+{% block content %}
+<center>
+    <h2>Indian Railways Station</h2><br>
+<form method="post" action="{% url 'social:station_auto' %}">
+    {% csrf_token %}
+    <input type="text" name="info" style="width:75%; border-radius:5px;height:40px;" placeholder="   Station Name <Partial/Full>"><br><br>
+    <input type="submit" style="height:40px; width:150px; background-color:#cce6ff; border-radius:5px;" value="Get Station Info">
+</form>
+    <br><br>
+{% if error_msg %}
+
+{% elif station_info %}
+    <div class="container">
+            <div class="table-responsive">
+                <table id="table" class="table-striped table-responsive" style="width:25%;">
+                    <tr>
+                        <th style="padding-left: 25px;">Station Code</th>
+                        <th>Station Name</th>
+                    </tr>
+
+                    {% for value_list  in station_info %}
+                        {% for value in value_list.stations %}
+                        <tr>
+                            <td style="padding-left: 25px;">{{ value.code }}</td>
+                            <td>{{ value.name }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    <br/><br/>
+    {% endif %}
+</center>
+{% endblock %}
+
